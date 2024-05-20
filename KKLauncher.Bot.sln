@@ -5,6 +5,10 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KKLauncher.Bot", "KKLauncher.Bot\KKLauncher.Bot.csproj", "{4A7AF0B0-A7DA-4FAA-915A-5DBE392AD0DE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "KKLauncher.DB", "KKLauncher.DB", "{3D2B8AD9-8D47-4D05-BC9C-61009A11F5A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KKLauncher.DB", "KKLauncher.DB\KKLauncher.DB.csproj", "{5C8F092E-9CB1-440C-B07C-EE3BA2873453}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{4A7AF0B0-A7DA-4FAA-915A-5DBE392AD0DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A7AF0B0-A7DA-4FAA-915A-5DBE392AD0DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A7AF0B0-A7DA-4FAA-915A-5DBE392AD0DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C8F092E-9CB1-440C-B07C-EE3BA2873453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C8F092E-9CB1-440C-B07C-EE3BA2873453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C8F092E-9CB1-440C-B07C-EE3BA2873453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C8F092E-9CB1-440C-B07C-EE3BA2873453}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5C8F092E-9CB1-440C-B07C-EE3BA2873453} = {3D2B8AD9-8D47-4D05-BC9C-61009A11F5A9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17FC9BB9-A538-4D81-9D33-48AF1E56859B}
