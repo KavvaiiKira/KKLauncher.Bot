@@ -13,7 +13,7 @@ namespace KKLauncher.Bot.Services
             _callbackCommandFactory = new CallbackCommandFactory();
         }
 
-        public async Task HandleAsync(ITelegramBotClient kkAppsBot, Update updateData)
+        public async Task HandleAsync(ITelegramBotClient kkBot, Update updateData)
         {
             if (updateData.CallbackQuery == null || updateData.CallbackQuery.Message == null)
             {
@@ -31,7 +31,7 @@ namespace KKLauncher.Bot.Services
 
             await _callbackCommandFactory
                 .Create(callbackData)
-                .ExecuteAsync(kkAppsBot, updateData, chatId, updateData.CallbackQuery.Message.MessageId);
+                .ExecuteAsync(kkBot, updateData, chatId, updateData.CallbackQuery.Message.MessageId);
         }
     }
 }

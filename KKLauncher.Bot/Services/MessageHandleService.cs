@@ -1,6 +1,4 @@
-﻿using KKLauncher.Bot.Enums;
-using KKLauncher.Bot.Factories;
-using KKLauncher.Bot.Utils;
+﻿using KKLauncher.Bot.Factories;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -8,16 +6,14 @@ namespace KKLauncher.Bot.Services
 {
     public class MessageHandleService
     {
-        private CommandMessageCommandFactory _commandMessageCommandFactory;
-        private DialogStatusCommandFactory _dialogStatusCommandFactory;
+        private MenuCommandFactory _menuCommandFactory;
 
         public MessageHandleService()
         {
-            _commandMessageCommandFactory = new CommandMessageCommandFactory();
-            _dialogStatusCommandFactory = new DialogStatusCommandFactory();
+            _menuCommandFactory = new MenuCommandFactory();
         }
 
-        public async Task HandleAsync(ITelegramBotClient kkAppsBot, Update updateData)
+        public async Task HandleAsync(ITelegramBotClient kkBot, Update updateData)
         {
             if (updateData.Message == null)
             {
@@ -27,29 +23,17 @@ namespace KKLauncher.Bot.Services
             var messageText = updateData.Message?.Text;
             var chatId = updateData.Message?.Chat?.Id;
 
-            if (chatId == null)
+            if (chatId == null ||
+                string.IsNullOrEmpty(messageText) ||
+                !messageText.StartsWith("/"))
             {
+                //TODO: App search
                 return;
             }
 
-            if (!string.IsNullOrEmpty(messageText) && messageText.StartsWith("/"))
-            {
-                await _commandMessageCommandFactory
-                    .Create(messageText)
-                    .ExecuteAsync(kkAppsBot, updateData, chatId.Value);
-
-                return;
-            }
-
-            var session = BotSessionUtils.GerSessinByChatId(chatId.Value);
-            if (session == null || session.Status == (int)DialogStatus.FreeText)
-            {
-                return;
-            }
-
-            await _dialogStatusCommandFactory
-                .Create((DialogStatus)session.Status)
-                .ExecuteAsync(kkAppsBot, updateData, session);
+            await _menuCommandFactory
+                .Create(messageText)
+                .ExecuteAsync(kkBot, chatId.Value);
         }
     }
 }
