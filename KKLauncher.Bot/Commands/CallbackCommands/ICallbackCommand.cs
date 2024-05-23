@@ -1,10 +1,10 @@
-﻿using Telegram.Bot;
-using Telegram.Bot.Types;
+﻿using Newtonsoft.Json.Linq;
+using Telegram.Bot;
 
 namespace KKLauncher.Bot.Commands.CallbackCommands
 {
     public interface ICallbackCommand
     {
-        Task ExecuteAsync(ITelegramBotClient kkBot, Update updateData, long chatId, int? messageId = null);
+        Task ExecuteAsync(ITelegramBotClient kkBot, JObject callbackObj, long chatId, int messageId);
     }
 }

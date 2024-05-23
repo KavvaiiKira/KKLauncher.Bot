@@ -1,4 +1,6 @@
 ﻿using KKLauncher.Bot.Factories;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -29,9 +31,15 @@ namespace KKLauncher.Bot.Services
                 return;
             }
 
+            var callbackObject = JsonConvert.DeserializeObject<JObject>(callbackData);
+            if (callbackObject == null)
+            {
+                return;
+            }
+
             await _callbackCommandFactory
-                .Create(callbackData)
-                .ExecuteAsync(kkBot, updateData, chatId, updateData.CallbackQuery.Message.MessageId);
+                .Create(callbackObject)
+                .ExecuteAsync(kkBot, callbackObject, chatId, updateData.CallbackQuery.Message.MessageId);
         }
     }
 }
